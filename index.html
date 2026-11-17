@@ -279,12 +279,30 @@
             .submit-real-btn { margin-top: 10px; }
         }
     </style>
+
+   
+.btn-voucher-login {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    z-index: 10;
+    transition: background-color 0.2s ease;
+}
+.btn-voucher-login:hover {
+    background-color: rgba(29, 32, 136, 0.08);
+}
 </head>
 <body>
 
     <div class="landing-wrapper">
         <!-- Đường dẫn chính xác tới file design-bg.png trong thư mục images -->
         <img src="images/design-bg.png" alt="Vinamilk Tết Khoẻ Re" class="design-canvas">
+        <!-- 3 nút Đăng nhập tương tác tại khu vực Voucher -->
+        <button type="button" class="btn-voucher-login" style="top: 83.25%; left: 32.1%; width: 5.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Trà Atisô"></button>
+        <button type="button" class="btn-voucher-login" style="top: 83.25%; left: 56.1%; width: 5.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Nước Ép"></button>
+        <button type="button" class="btn-voucher-login" style="top: 83.25%; left: 80.1%; width: 5.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Cửa Hàng Vinamilk"></button>
 
         <!-- Các nút CTA bấm vào tự động trượt xuống Form đăng ký -->
         <a href="#form-dang-ky" class="hotspot-btn btn-hero" title="Đăng kí ưu đãi"></a>
@@ -399,6 +417,13 @@
                 alert('Có lỗi kết nối tới Zoho CRM, bạn vui lòng thử lại!');
             }
         });
+        function scrollToRegister() {
+    const registerForm = document.getElementById('form-dang-ky');
+    if (registerForm) {
+        registerForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('tenDangNhap').focus();
+    }
+}
 
         function closeModal() {
             modal.style.display = 'none';
