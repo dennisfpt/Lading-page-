@@ -39,6 +39,46 @@
             user-select: none;
         }
 
+        /* ================= HIỆU ỨNG CUỘN TỚI ĐÂU ĐỘNG TỚI ĐÓ (SCROLL REVEAL) ================= */
+        .scroll-zone {
+            position: absolute;
+            left: 3%;
+            width: 94%;
+            border-radius: 20px;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(35px) scale(0.98);
+            transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                        box-shadow 0.35s ease;
+            z-index: 5;
+        }
+
+        .scroll-zone.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Khung bao 3 thẻ Voucher tương tác nổi lên khi rê chuột hoặc cuộn tới */
+        .voucher-card-zone {
+            position: absolute;
+            top: 72.35%;
+            height: 5.55%;
+            width: 28.5%;
+            border-radius: 12px;
+            z-index: 12;
+            cursor: pointer;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.35s ease,
+                        background-color 0.3s ease;
+        }
+
+        .voucher-card-zone:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 14px 28px rgba(0, 51, 160, 0.16);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
         /* ================= HIỆU ỨNG CHUYỂN ĐỘNG NÚT BẤM ================= */
         @keyframes pulseGlow {
             0% {
@@ -62,7 +102,7 @@
             cursor: pointer;
             border-radius: 50px;
             transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-            z-index: 10;
+            z-index: 14;
             overflow: hidden;
         }
 
@@ -132,7 +172,7 @@
             border: 1.5px solid transparent;
             cursor: pointer;
             border-radius: 6px;
-            z-index: 16;
+            z-index: 18;
             transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -147,13 +187,13 @@
             transform: scale(0.96);
         }
 
-        /* ================= FIX LỖI CHỒNG CHỮ VOUCHER TRÀ ATISÔ TRÊN ẢNH ================= */
+        /* ================= FIX CHUẨN KHÍT THẺ VOUCHER TRÀ ATISÔ ĐẦU TIÊN ================= */
         .voucher-fix-overlay {
             position: absolute;
-            top: 73.15%;
-            left: 5.2%;
-            width: 28.2%;
-            height: 3.15%;
+            top: 72.42%;
+            left: 5.15%;
+            width: 28.35%;
+            height: 2.98%;
             background: linear-gradient(135deg, #F3FAD8 0%, #E4F5B8 100%);
             border-radius: 8px 8px 0 0;
             z-index: 15;
@@ -162,9 +202,9 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 8px;
+            padding: 6px;
             box-shadow: inset 0 0 0 1.5px #CBE38A;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
             cursor: pointer;
         }
 
@@ -188,7 +228,7 @@
             font-weight: 800;
             padding: 3px 12px;
             border-radius: 20px;
-            margin: 5px 0;
+            margin: 4px 0;
             letter-spacing: 0.4px;
         }
 
@@ -211,6 +251,14 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .overlay-form-container.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .form-row-2 {
@@ -238,12 +286,18 @@
             font-weight: 600;
             color: #0033A0;
             outline: none;
-            transition: 0.2s;
+            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .real-input:hover {
+            transform: translateX(3px);
+            background: #f6f9fc;
         }
 
         .real-input:focus {
             background: #ffffff;
-            box-shadow: 0 3px 10px rgba(0, 51, 160, 0.12);
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.14);
         }
 
         .real-input::placeholder {
@@ -265,7 +319,7 @@
 
         .toggle-password:hover {
             opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .submit-real-btn {
@@ -365,7 +419,11 @@
             border-radius: 14px;
             white-space: nowrap;
             box-shadow: 0 3px 8px rgba(0, 51, 160, 0.15);
-            transform: scaleX(-1);
+            animation: speechUnflip 22s linear infinite;
+        }
+
+        .walking-cow.cow-2 .cow-speech {
+            animation-delay: -11s;
         }
 
         @keyframes cowWalkAcross {
@@ -387,6 +445,18 @@
             }
             100% {
                 left: -180px;
+                transform: scaleX(-1);
+            }
+        }
+
+        @keyframes speechUnflip {
+            0%, 49% {
+                transform: scaleX(-1);
+            }
+            50%, 99% {
+                transform: scaleX(1);
+            }
+            100% {
                 transform: scaleX(-1);
             }
         }
@@ -458,7 +528,6 @@
             transform: scale(1.05);
         }
 
-        /* Responsive cho màn hình nhỏ hơn 768px */
         @media (max-width: 768px) {
             .overlay-form-container {
                 padding: 8px 10px 75px;
@@ -481,6 +550,17 @@
         <!-- Ảnh thiết kế nền -->
         <img src="images/design-bg.png" alt="Vinamilk Tết Khoẻ Re" class="design-canvas">
 
+        <!-- Các vùng kích hoạt hiệu ứng động khi cuộn trang tới -->
+        <div class="scroll-zone" style="top: 12%; height: 15%;"></div>
+        <div class="scroll-zone" style="top: 28%; height: 12%;"></div>
+        <div class="scroll-zone" style="top: 41%; height: 17%;"></div>
+        <div class="scroll-zone" style="top: 59%; height: 12%;"></div>
+
+        <!-- 3 vùng thẻ Voucher tương tác nổi lên khi rê chuột -->
+        <div class="voucher-card-zone" style="left: 5.1%;" onclick="scrollToRegister()"></div>
+        <div class="voucher-card-zone" style="left: 35.75%;" onclick="scrollToRegister()"></div>
+        <div class="voucher-card-zone" style="left: 66.4%;" onclick="scrollToRegister()"></div>
+
         <!-- 3 nút Đăng nhập tương tác tại khu vực Voucher -->
         <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 25.1%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Trà Atisô"></button>
         <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 55.6%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Nước Ép"></button>
@@ -494,7 +574,7 @@
         <a href="#form-dang-ky" class="hotspot-btn btn-loyalty" title="Đăng kí ngay"></a>
         <a href="#form-dang-ky" class="hotspot-btn btn-steps" title="Đăng kí ngay"></a>
 
-        <!-- Lớp vá lỗi chữ chồng đè ở thẻ Voucher Trà Atisô đầu tiên -->
+        <!-- Lớp vá chuẩn khít thẻ Voucher Trà Atisô đầu tiên -->
         <div class="voucher-fix-overlay" onclick="scrollToRegister()">
             <div class="v-sub">VOUCHER<br>TRÀ ATISÔ</div>
             <div class="v-store">CỬA HÀNG VINAMILK</div>
@@ -573,6 +653,19 @@
                 }, 400);
             }
         }
+
+        // Kích hoạt chuyển động khi cuộn trang tới từng khu vực
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.scroll-zone, .overlay-form-container').forEach(el => {
+            revealObserver.observe(el);
+        });
 
         const form = document.getElementById('form-dang-ky');
         const modal = document.getElementById('successModal');
