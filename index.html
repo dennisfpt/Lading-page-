@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinamilk 100% Sữa Tươi - Tết Khoẻ Re</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #eef2f6;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Khung chuẩn tỷ lệ 1366x7680 của thiết kế */
+        .landing-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1366px;
+            background: #fff;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+            overflow: hidden;
+        }
+
+        /* Ảnh thiết kế gốc nằm trong thư mục images/ */
+        .design-canvas {
+            width: 100%;
+            height: auto;
+            display: block;
+            user-select: none;
+        }
+
+        /* ================= CÁC NÚT CTA TƯƠNG TÁC ĐÈ LÊN THIẾT KẾ ================= */
+        .hotspot-btn {
+            position: absolute;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            z-index: 10;
+        }
+
+        .hotspot-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 22px rgba(255, 210, 0, 0.8);
+        }
+
+        /* 1. Nút "Đăng kí ưu đãi" ở Hero Banner */
+        .btn-hero {
+            top: 8.55%;
+            left: 39.2%;
+            width: 35.2%;
+            height: 1.4%;
+        }
+
+        /* 2. Nút "Đăng kí ngay" dưới mục Mời bạn sắm sữa */
+        .btn-products {
+            top: 38.35%;
+            left: 59.5%;
+            width: 13.5%;
+            height: 0.9%;
+        }
+
+        /* 3. Nút "Đăng kí ngay" ở banner Tích điểm đổi quà */
+        .btn-loyalty {
+            top: 56.05%;
+            left: 42.5%;
+            width: 15%;
+            height: 0.95%;
+        }
+
+        /* 4. Nút "Đăng kí ngay" dưới mục Tận hưởng dễ dàng */
+        .btn-steps {
+            top: 70.05%;
+            left: 59.5%;
+            width: 13.5%;
+            height: 0.9%;
+        }
+
+        /* ================= FIX LỖI CHỒNG CHỮ VOUCHER TRÀ ATISÔ TRÊN ẢNH ================= */
+        .voucher-fix-overlay {
+            position: absolute;
+            top: 73.15%;
+            left: 5.2%;
+            width: 28.2%;
+            height: 3.15%;
+            background: linear-gradient(135deg, #F3FAD8 0%, #E4F5B8 100%);
+            border-radius: 8px 8px 0 0;
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8px;
+            box-shadow: inset 0 0 0 1.5px #CBE38A;
+        }
+
+        .voucher-fix-overlay .v-sub {
+            color: #6B9E1E;
+            font-size: clamp(9px, 0.95vw, 13px);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            line-height: 1.25;
+        }
+
+        .voucher-fix-overlay .v-store {
+            background: #6D3B96;
+            color: #fff;
+            font-size: clamp(9px, 0.9vw, 12px);
+            font-weight: 800;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin: 5px 0;
+            letter-spacing: 0.4px;
+        }
+
+        .voucher-fix-overlay .v-amount {
+            color: #5C9114;
+            font-size: clamp(16px, 2.1vw, 28px);
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        /* ================= FORM ĐĂNG KÝ CHE PHỦ HOÀN TOÀN VÙNG CŨ TRÊN ẢNH ================= */
+        .overlay-form-container {
+            position: absolute;
+            top: 83.35%;
+            left: 19.8%;
+            width: 65.5%;
+            background: #FEFDF0;
+            padding: 10px 14px 70px;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            gap: 1.15vw;
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1.35fr 1fr;
+            gap: 1.2vw;
+        }
+
+        /* Khung bọc ô mật khẩu để đặt icon con mắt bên phải */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .real-input {
+            width: 100%;
+            height: 3.4vw;
+            max-height: 46px;
+            min-height: 28px;
+            background: #EEF2F7;
+            border: none;
+            border-bottom: 1.5px solid #0033A0;
+            border-radius: 4px 4px 0 0;
+            padding: 0 42px 0 14px;
+            font-size: clamp(11px, 1.05vw, 14px);
+            font-weight: 600;
+            color: #0033A0;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .real-input:focus {
+            background: #ffffff;
+            box-shadow: 0 3px 10px rgba(0, 51, 160, 0.12);
+        }
+
+        .real-input::placeholder {
+            color: #0033A0;
+            opacity: 0.85;
+            font-weight: 600;
+        }
+
+        /* Nút con mắt ẩn/hiện mật khẩu */
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            color: #0033A0;
+            cursor: pointer;
+            font-size: clamp(13px, 1.15vw, 16px);
+            opacity: 0.8;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .toggle-password:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .submit-real-btn {
+            margin-top: 0.7vw;
+            height: 3.5vw;
+            max-height: 48px;
+            min-height: 32px;
+            background: #0033A0;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(12px, 1.1vw, 15px);
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.25);
+        }
+
+        .submit-real-btn:hover {
+            background: #002169;
+            transform: translateY(-1px);
+        }
+
+        /* Modal thông báo đăng ký thành công */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+            border-top: 6px solid #0033A0;
+        }
+
+        .modal-card h3 {
+            color: #0033A0;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .modal-card p {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        .modal-close {
+            background: #D91E2A;
+            color: #fff;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (min-width: 1366px) {
+            .overlay-form-container { gap: 16px; }
+            .form-row-2 { gap: 16px; }
+            .submit-real-btn { margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="landing-wrapper">
+        <!-- Đường dẫn chính xác tới file design-bg.png trong thư mục images -->
+        <img src="images/design-bg.png" alt="Vinamilk Tết Khoẻ Re" class="design-canvas">
+
+        <!-- Các nút CTA bấm vào tự động trượt xuống Form đăng ký -->
+        <a href="#form-dang-ky" class="hotspot-btn btn-hero" title="Đăng kí ưu đãi"></a>
+        <a href="#form-dang-ky" class="hotspot-btn btn-products" title="Đăng kí ngay"></a>
+        <a href="#form-dang-ky" class="hotspot-btn btn-loyalty" title="Đăng kí ngay"></a>
+        <a href="#form-dang-ky" class="hotspot-btn btn-steps" title="Đăng kí ngay"></a>
+
+        <!-- Lớp vá lỗi chữ chồng đè ở thẻ Voucher Trà Atisô đầu tiên -->
+        <div class="voucher-fix-overlay">
+            <div class="v-sub">VOUCHER<br>TRÀ ATISÔ</div>
+            <div class="v-store">CỬA HÀNG VINAMILK</div>
+            <div class="v-amount">50.000đ</div>
+        </div>
+
+        <!-- Form đăng ký thật -->
+        <form id="form-dang-ky" class="overlay-form-container">
+            <input type="text" class="real-input" id="tenDangNhap" placeholder="Tên đăng nhập *" required>
+            <input type="tel" class="real-input" id="sdt" placeholder="Số điện thoại *" required>
+            <input type="email" class="real-input" id="email" placeholder="Email nhận thông báo & ưu đãi *" required>
+            
+            <div class="form-row-2">
+                <input type="text" class="real-input" id="hoDem" placeholder="Họ và tên đệm *" required>
+                <input type="text" class="real-input" id="ten" placeholder="Tên *" required>
+            </div>
+
+            <!-- Ô nhập mật khẩu có nút con mắt -->
+            <div class="password-wrapper">
+                <input type="password" class="real-input" id="matKhau" placeholder="Nhập mật khẩu *" required>
+                <i class="fa-regular fa-eye-slash toggle-password" onclick="togglePass('matKhau', this)" title="Hiện/Ẩn mật khẩu"></i>
+            </div>
+
+            <!-- Ô xác nhận mật khẩu có nút con mắt -->
+            <div class="password-wrapper">
+                <input type="password" class="real-input" id="xacNhanMatKhau" placeholder="Xác nhận mật khẩu *" required>
+                <i class="fa-regular fa-eye-slash toggle-password" onclick="togglePass('xacNhanMatKhau', this)" title="Hiện/Ẩn mật khẩu"></i>
+            </div>
+
+            <button type="submit" class="submit-real-btn">Đăng ký nhận ưu đãi ngay</button>
+        </form>
+    </div>
+
+    <!-- Popup thông báo thành công -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-card">
+            <h3>Đăng ký thành công!</h3>
+            <p id="modalText"></p>
+            <button class="modal-close" onclick="closeModal()">Đóng</button>
+        </div>
+    </div>
+
+    <script>
+        // Hàm bật/tắt hiển thị mật khẩu
+        function togglePass(inputId, icon) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        }
+
+        const form = document.getElementById('form-dang-ky');
+        const modal = document.getElementById('successModal');
+        const modalText = document.getElementById('modalText');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const hoDem = document.getElementById('hoDem').value.trim();
+            const ten = document.getElementById('ten').value.trim();
+            const phone = document.getElementById('sdt').value.trim();
+            const pass1 = document.getElementById('matKhau').value;
+            const pass2 = document.getElementById('xacNhanMatKhau').value;
+
+            if (pass1 !== pass2) {
+                alert('Mật khẩu xác nhận chưa khớp, bạn kiểm tra lại nhé!');
+                return;
+            }
+
+            modalText.innerHTML = `Cảm ơn <strong>${hoDem} ${ten}</strong> (${phone}) đã đăng ký tham gia chương trình <strong>Tết Khoẻ Re</strong>! Vinamilk sẽ liên hệ xác nhận suất ưu đãi cho bạn sớm nhất.`;
+            modal.style.display = 'flex';
+            form.reset();
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
