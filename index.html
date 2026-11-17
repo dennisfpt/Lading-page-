@@ -336,7 +336,6 @@
     </div>
 
     <script>
-        // Hàm bật/tắt hiển thị mật khẩu
         function togglePass(inputId, icon) {
             const input = document.getElementById(inputId);
             if (input.type === 'password') {
@@ -354,11 +353,14 @@
         const modal = document.getElementById('successModal');
         const modalText = document.getElementById('modalText');
 
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            const tenDangNhap = document.getElementById('tenDangNhap').value.trim();
             const hoDem = document.getElementById('hoDem').value.trim();
             const ten = document.getElementById('ten').value.trim();
             const phone = document.getElementById('sdt').value.trim();
+            const email = document.getElementById('email').value.trim();
             const pass1 = document.getElementById('matKhau').value;
             const pass2 = document.getElementById('xacNhanMatKhau').value;
 
@@ -367,9 +369,35 @@
                 return;
             }
 
-            modalText.innerHTML = `Cảm ơn <strong>${hoDem} ${ten}</strong> (${phone}) đã đăng ký tham gia chương trình <strong>Tết Khoẻ Re</strong>! Vinamilk sẽ liên hệ xác nhận suất ưu đãi cho bạn sớm nhất.`;
-            modal.style.display = 'flex';
-            form.reset();
+            // Đóng gói dữ liệu khớp 100% với Webform Zoho CRM của bạn
+            const zohoData = new FormData();
+            zohoData.append('xnQsjsdp', '273542a45a0e17eb5a8d7f62efbd45b8a1f2bf36a9217b8c5096c7226567d367');
+            zohoData.append('xmIwtLD', '262549a906fa478f128506169a1469420a5df2525423405b56f95e8e18b5f2449fd647db002a9c0cfb95f1e98b6b4c57');
+            zohoData.append('actionType', 'Q29udGFjdHM=');
+            zohoData.append('returnURL', 'null');
+            zohoData.append('aG9uZXlwb3Q', ''); // Trường chống spam mặc định của Zoho
+            
+            // Map dữ liệu vào các trường trong mô-đun Liên hệ (Contacts)
+            zohoData.append('Last Name', ten);
+            zohoData.append('First Name', hoDem);
+            zohoData.append('Phone', phone);
+            zohoData.append('Email', email);
+            zohoData.append('Account Name', tenDangNhap);
+            zohoData.append('Lead Source', 'Yêu cầu từ Web');
+
+            try {
+                await fetch('https://crm.zoho.com/crm/WebToContactForm', {
+                    method: 'POST',
+                    body: zohoData,
+                    mode: 'no-cors'
+                });
+
+                modalText.innerHTML = `Cảm ơn <strong>${hoDem} ${ten}</strong> (${phone}) đã đăng ký thành công chương trình <strong>Tết Khoẻ Re</strong>! Dữ liệu đã được đồng bộ lên Zoho CRM.`;
+                modal.style.display = 'flex';
+                form.reset();
+            } catch (error) {
+                alert('Có lỗi kết nối tới Zoho CRM, bạn vui lòng thử lại!');
+            }
         });
 
         function closeModal() {
