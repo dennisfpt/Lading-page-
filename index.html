@@ -18,10 +18,11 @@
         body {
             background-color: #FEFDF0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Khung chuẩn tỷ lệ thiết kế, vừa vặn tầm mắt trên mọi màn hình */
+        /* Khung chuẩn tỷ lệ thiết kế */
         .landing-wrapper {
             position: relative;
             width: 100%;
@@ -31,7 +32,6 @@
             overflow: hidden;
         }
 
-        /* Ảnh thiết kế gốc nằm trong thư mục images/ */
         .design-canvas {
             width: 100%;
             height: auto;
@@ -39,7 +39,7 @@
             user-select: none;
         }
 
-        /* ================= HIỆU ỨNG CUỘN TỚI ĐÂU ĐỘNG TỚI ĐÓ (SCROLL REVEAL) ================= */
+        /* ================= HIỆU ỨNG CUỘN TỚI ĐÂU ĐỘNG TỚI ĐÓ ================= */
         .scroll-zone {
             position: absolute;
             left: 3%;
@@ -49,8 +49,7 @@
             opacity: 0;
             transform: translateY(35px) scale(0.98);
             transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-                        box-shadow 0.35s ease;
+                        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
             z-index: 5;
         }
 
@@ -59,7 +58,6 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Khung bao 3 thẻ Voucher tương tác nổi lên khi rê chuột hoặc cuộn tới */
         .voucher-card-zone {
             position: absolute;
             top: 72.35%;
@@ -69,27 +67,19 @@
             z-index: 12;
             cursor: pointer;
             transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        box-shadow 0.35s ease,
-                        background-color 0.3s ease;
+                        box-shadow 0.35s ease;
         }
 
         .voucher-card-zone:hover {
             transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 14px 28px rgba(0, 51, 160, 0.16);
-            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 14px 28px rgba(0, 51, 160, 0.14);
         }
 
         /* ================= HIỆU ỨNG CHUYỂN ĐỘNG NÚT BẤM ================= */
         @keyframes pulseGlow {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 210, 0, 0.75);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(255, 210, 0, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 210, 0, 0);
-            }
+            0% { box-shadow: 0 0 0 0 rgba(255, 210, 0, 0.75); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 210, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 210, 0, 0); }
         }
 
         @keyframes sheenSweep {
@@ -132,7 +122,6 @@
             transform: translateY(0) scale(0.98);
         }
 
-        /* 1. Nút "Đăng kí ưu đãi" ở Hero Banner -> chuyển sang Render */
         .btn-hero {
             top: 8.55%;
             left: 39.2%;
@@ -141,31 +130,10 @@
             animation: pulseGlow 2.2s infinite;
         }
 
-        /* 2. Nút "Đăng kí ngay" dưới mục Mời bạn sắm sữa */
-        .btn-products {
-            top: 38.35%;
-            left: 59.5%;
-            width: 13.5%;
-            height: 0.9%;
-        }
+        .btn-products { top: 38.35%; left: 59.5%; width: 13.5%; height: 0.9%; }
+        .btn-loyalty  { top: 56.05%; left: 42.5%; width: 15%;   height: 0.95%; }
+        .btn-steps    { top: 70.05%; left: 59.5%; width: 13.5%; height: 0.9%; }
 
-        /* 3. Nút "Đăng kí ngay" ở banner Tích điểm đổi quà */
-        .btn-loyalty {
-            top: 56.05%;
-            left: 42.5%;
-            width: 15%;
-            height: 0.95%;
-        }
-
-        /* 4. Nút "Đăng kí ngay" dưới mục Tận hưởng dễ dàng */
-        .btn-steps {
-            top: 70.05%;
-            left: 59.5%;
-            width: 13.5%;
-            height: 0.9%;
-        }
-
-        /* Nút bấm đè lên 3 nút Đăng nhập ở khu vực Voucher */
         .btn-voucher-login {
             position: absolute;
             background: transparent;
@@ -183,58 +151,52 @@
             box-shadow: 0 4px 12px rgba(0, 51, 160, 0.25);
         }
 
-        .btn-voucher-login:active {
-            transform: scale(0.96);
-        }
-
-        /* ================= FIX CHUẨN KHÍT THẺ VOUCHER TRÀ ATISÔ ĐẦU TIÊN ================= */
+        /* ================= FIX SẠCH LỖI CHỒNG CHỮ VOUCHER TRÀ ATISÔ (ĐỒNG BỘ NỀN KEM) ================= */
         .voucher-fix-overlay {
             position: absolute;
-            top: 72.42%;
+            top: 72.38%;
             left: 5.15%;
             width: 28.35%;
-            height: 2.98%;
-            background: linear-gradient(135deg, #F3FAD8 0%, #E4F5B8 100%);
-            border-radius: 8px 8px 0 0;
+            height: 2.95%;
+            background: #FEFDF0;
             z-index: 15;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 6px;
-            box-shadow: inset 0 0 0 1.5px #CBE38A;
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            padding: 4px;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
         .voucher-fix-overlay:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: inset 0 0 0 1.5px #9AC738, 0 10px 20px rgba(92, 145, 20, 0.2);
+            transform: scale(1.03);
         }
 
         .voucher-fix-overlay .v-sub {
-            color: #6B9E1E;
-            font-size: clamp(9px, 0.95vw, 13px);
+            color: #A3D944;
+            font-size: clamp(10px, 1vw, 14px);
             font-weight: 800;
-            letter-spacing: 0.5px;
-            line-height: 1.25;
+            letter-spacing: 0.6px;
+            line-height: 1.2;
         }
 
         .voucher-fix-overlay .v-store {
-            background: #6D3B96;
+            background: #7B4397;
             color: #fff;
             font-size: clamp(9px, 0.9vw, 12px);
             font-weight: 800;
-            padding: 3px 12px;
+            padding: 3px 14px;
             border-radius: 20px;
-            margin: 4px 0;
+            margin: 5px 0;
             letter-spacing: 0.4px;
+            box-shadow: 0 2px 6px rgba(123, 67, 151, 0.25);
         }
 
         .voucher-fix-overlay .v-amount {
-            color: #5C9114;
-            font-size: clamp(16px, 2.1vw, 28px);
+            color: #9ED639;
+            font-size: clamp(18px, 2.2vw, 30px);
             font-weight: 900;
             line-height: 1;
         }
@@ -346,8 +308,120 @@
             box-shadow: 0 8px 20px rgba(0, 51, 160, 0.4);
         }
 
-        .submit-real-btn:active {
-            transform: scale(0.98);
+        /* ================= PHẦN MỚI: ĐÁNH GIÁ TỪ KHÁCH HÀNG (THEO MẪU) ================= */
+        .reviews-section {
+            width: 100%;
+            max-width: 1280px;
+            background: #F4F5F7;
+            padding: 56px 24px 85px;
+            box-shadow: 0 10px 40px rgba(0, 51, 160, 0.06);
+        }
+
+        .reviews-title {
+            text-align: center;
+            color: #0033A0;
+            font-size: clamp(22px, 2.5vw, 32px);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 36px;
+        }
+
+        .reviews-grid {
+            max-width: 1040px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .review-card {
+            background: #FFFFFF;
+            border-radius: 18px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.35s ease,
+                        opacity 0.6s ease;
+        }
+
+        .review-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .review-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0, 51, 160, 0.12);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .quote-icon {
+            color: #2E8B57;
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .star-rating {
+            color: #F59E0B;
+            font-size: 15px;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            color: #1E293B;
+            font-size: 14.5px;
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .review-divider {
+            height: 1px;
+            background: #E2E8F0;
+            margin-bottom: 18px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .reviewer-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #FCE7F3;
+            border: 2px solid #E2E8F0;
+            flex-shrink: 0;
+        }
+
+        .reviewer-name {
+            color: #0F172A;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .reviewer-role {
+            color: #64748B;
+            font-size: 13px;
+            font-style: italic;
+            font-weight: 500;
         }
 
         /* ================= KHÔNG KHÍ TẾT: HOA MAI RƠI, BÒ ĐI DẠO & PHÁO HOA ================= */
@@ -450,15 +524,9 @@
         }
 
         @keyframes speechUnflip {
-            0%, 49% {
-                transform: scaleX(-1);
-            }
-            50%, 99% {
-                transform: scaleX(1);
-            }
-            100% {
-                transform: scaleX(-1);
-            }
+            0%, 49% { transform: scaleX(-1); }
+            50%, 99% { transform: scaleX(1); }
+            100% { transform: scaleX(-1); }
         }
 
         @keyframes cowBounce {
@@ -528,6 +596,13 @@
             transform: scale(1.05);
         }
 
+        @media (max-width: 900px) {
+            .reviews-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+            }
+        }
+
         @media (max-width: 768px) {
             .overlay-form-container {
                 padding: 8px 10px 75px;
@@ -574,7 +649,7 @@
         <a href="#form-dang-ky" class="hotspot-btn btn-loyalty" title="Đăng kí ngay"></a>
         <a href="#form-dang-ky" class="hotspot-btn btn-steps" title="Đăng kí ngay"></a>
 
-        <!-- Lớp vá chuẩn khít thẻ Voucher Trà Atisô đầu tiên -->
+        <!-- Lớp vá sạch lỗi chữ chồng đè ở thẻ Voucher Trà Atisô đầu tiên -->
         <div class="voucher-fix-overlay" onclick="scrollToRegister()">
             <div class="v-sub">VOUCHER<br>TRÀ ATISÔ</div>
             <div class="v-store">CỬA HÀNG VINAMILK</div>
@@ -607,6 +682,93 @@
             <button type="submit" class="submit-real-btn">Đăng ký nhận ưu đãi ngay</button>
         </form>
     </div>
+
+    <!-- PHẦN ĐÁNH GIÁ TỪ KHÁCH HÀNG (THEO MẪU) -->
+    <section class="reviews-section">
+        <h2 class="reviews-title">ĐÁNH GIÁ TỪ KHÁCH HÀNG</h2>
+        <div class="reviews-grid">
+            <!-- Thẻ đánh giá 1 -->
+            <div class="review-card">
+                <div>
+                    <div class="review-header">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <div class="star-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Mình đã đăng ký nhận ưu đãi Tết Khoẻ Re và đổi voucher Trà Atisô cực nhanh, sữa tươi thơm ngon cả nhà đều mê!</p>
+                </div>
+                <div>
+                    <div class="review-divider"></div>
+                    <div class="reviewer-info">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=ThuyDung&backgroundColor=ffd5dc" alt="Phạm Thùy Dung" class="reviewer-avatar">
+                        <div>
+                            <div class="reviewer-name">Phạm Thùy Dung</div>
+                            <div class="reviewer-role">Khách hàng thân thiết</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thẻ đánh giá 2 -->
+            <div class="review-card">
+                <div>
+                    <div class="review-header">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <div class="star-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Chương trình tích điểm đổi quà rất thiết thực dịp Tết, giao hàng tận nơi nhanh chóng và đóng gói cực kỳ cẩn thận!</p>
+                </div>
+                <div>
+                    <div class="review-divider"></div>
+                    <div class="reviewer-info">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=TienDung&backgroundColor=d1d4f9" alt="Đinh Tiến Dũng" class="reviewer-avatar">
+                        <div>
+                            <div class="reviewer-name">Đinh Tiến Dũng</div>
+                            <div class="reviewer-role">Sinh viên</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thẻ đánh giá 3 -->
+            <div class="review-card">
+                <div>
+                    <div class="review-header">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <div class="star-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Sữa tươi 100% ít đường vị thanh mát, lại được tặng kèm hộp sữa khi đặt đơn sớm nên tiết kiệm được kha khá cho gia đình.</p>
+                </div>
+                <div>
+                    <div class="review-divider"></div>
+                    <div class="reviewer-info">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=MinhAnh&backgroundColor=c0aede" alt="Nguyễn Minh Anh" class="reviewer-avatar">
+                        <div>
+                            <div class="reviewer-name">Nguyễn Minh Anh</div>
+                            <div class="reviewer-role">Nhân viên văn phòng</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Hiệu ứng hoa mai rơi & đàn bò đi dạo -->
     <div id="tet-petals-container"></div>
@@ -654,16 +816,16 @@
             }
         }
 
-        // Kích hoạt chuyển động khi cuộn trang tới từng khu vực
+        // Kích hoạt chuyển động khi cuộn trang tới từng khu vực & thẻ đánh giá
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.12 });
 
-        document.querySelectorAll('.scroll-zone, .overlay-form-container').forEach(el => {
+        document.querySelectorAll('.scroll-zone, .overlay-form-container, .review-card').forEach(el => {
             revealObserver.observe(el);
         });
 
