@@ -85,6 +85,21 @@
             height: 0.9%;
         }
 
+        /* Nút bấm đè lên 3 nút Đăng nhập ở khu vực Voucher */
+        .btn-voucher-login {
+            position: absolute;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            z-index: 16;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-voucher-login:hover {
+            background-color: rgba(0, 51, 160, 0.08);
+        }
+
         /* ================= FIX LỖI CHỒNG CHỮ VOUCHER TRÀ ATISÔ TRÊN ẢNH ================= */
         .voucher-fix-overlay {
             position: absolute;
@@ -279,30 +294,17 @@
             .submit-real-btn { margin-top: 10px; }
         }
     </style>
-
-   
-.btn-voucher-login {
-    position: absolute;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    z-index: 10;
-    transition: background-color 0.2s ease;
-}
-.btn-voucher-login:hover {
-    background-color: rgba(29, 32, 136, 0.08);
-}
 </head>
 <body>
 
     <div class="landing-wrapper">
         <!-- Đường dẫn chính xác tới file design-bg.png trong thư mục images -->
         <img src="images/design-bg.png" alt="Vinamilk Tết Khoẻ Re" class="design-canvas">
+
         <!-- 3 nút Đăng nhập tương tác tại khu vực Voucher -->
-        <button type="button" class="btn-voucher-login" style="top: 83.25%; left: 32.1%; width: 5.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Trà Atisô"></button>
-        <button type="button" class="btn-voucher-login" style="top: 83.25%; left: 56.1%; width: 5.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Nước Ép"></button>
-        <button type="button" class="btn-voucher-login" style="top: 83.25%; left: 80.1%; width: 5.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Cửa Hàng Vinamilk"></button>
+        <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 25.1%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Trà Atisô"></button>
+        <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 55.6%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Nước Ép"></button>
+        <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 86.1%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Cửa Hàng Vinamilk"></button>
 
         <!-- Các nút CTA bấm vào tự động trượt xuống Form đăng ký -->
         <a href="#form-dang-ky" class="hotspot-btn btn-hero" title="Đăng kí ưu đãi"></a>
@@ -353,6 +355,9 @@
         </div>
     </div>
 
+    <!-- Iframe ẩn giúp gửi form sang Zoho CRM chuẩn UTF-8 mà không làm tải lại trang -->
+    <iframe name="zoho_hidden_iframe" id="zoho_hidden_iframe" style="display:none;"></iframe>
+
     <script>
         function togglePass(inputId, icon) {
             const input = document.getElementById(inputId);
@@ -367,11 +372,21 @@
             }
         }
 
+        function scrollToRegister() {
+            const registerForm = document.getElementById('form-dang-ky');
+            if (registerForm) {
+                registerForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => {
+                    document.getElementById('tenDangNhap').focus();
+                }, 400);
+            }
+        }
+
         const form = document.getElementById('form-dang-ky');
         const modal = document.getElementById('successModal');
         const modalText = document.getElementById('modalText');
 
-        form.addEventListener('submit', async function(e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const tenDangNhap = document.getElementById('tenDangNhap').value.trim();
@@ -387,43 +402,44 @@
                 return;
             }
 
-            // Đóng gói dữ liệu khớp 100% với Webform Zoho CRM của bạn
-            const zohoData = new FormData();
-            zohoData.append('xnQsjsdp', '273542a45a0e17eb5a8d7f62efbd45b8a1f2bf36a9217b8c5096c7226567d367');
-            zohoData.append('xmIwtLD', '262549a906fa478f128506169a1469420a5df2525423405b56f95e8e18b5f2449fd647db002a9c0cfb95f1e98b6b4c57');
-            zohoData.append('actionType', 'Q29udGFjdHM=');
-            zohoData.append('returnURL', 'null');
-            zohoData.append('aG9uZXlwb3Q', ''); // Trường chống spam mặc định của Zoho
-            
-            // Map dữ liệu vào các trường trong mô-đun Liên hệ (Contacts)
-            zohoData.append('Last Name', ten);
-            zohoData.append('First Name', hoDem);
-            zohoData.append('Phone', phone);
-            zohoData.append('Email', email);
-            zohoData.append('Account Name', tenDangNhap);
-            zohoData.append('Lead Source', 'Yêu cầu từ Web');
+            // Tạo form chuẩn UTF-8 đẩy thẳng vào iframe ẩn tới Zoho CRM
+            const zohoForm = document.createElement('form');
+            zohoForm.method = 'POST';
+            zohoForm.action = 'https://crm.zoho.com/crm/WebToContactForm';
+            zohoForm.target = 'zoho_hidden_iframe';
+            zohoForm.acceptCharset = 'UTF-8';
+            zohoForm.style.display = 'none';
 
-            try {
-                await fetch('https://crm.zoho.com/crm/WebToContactForm', {
-                    method: 'POST',
-                    body: zohoData,
-                    mode: 'no-cors'
-                });
+            const fields = {
+                'xnQsjsdp': '273542a45a0e17eb5a8d7f62efbd45b8a1f2bf36a9217b8c5096c7226567d367',
+                'xmIwtLD': '262549a906fa478f128506169a1469420a5df2525423405b56f95e8e18b5f2449fd647db002a9c0cfb95f1e98b6b4c57',
+                'actionType': 'Q29udGFjdHM=',
+                'returnURL': 'null',
+                'aG9uZXlwb3Q': '',
+                'Last Name': ten,
+                'First Name': hoDem,
+                'Phone': phone,
+                'Email': email,
+                'Account Name': tenDangNhap,
+                'Lead Source': 'Yêu cầu từ Web'
+            };
 
-                modalText.innerHTML = `Cảm ơn <strong>${hoDem} ${ten}</strong> (${phone}) đã đăng ký thành công chương trình <strong>Tết Khoẻ Re</strong>! Dữ liệu đã được đồng bộ lên Zoho CRM.`;
-                modal.style.display = 'flex';
-                form.reset();
-            } catch (error) {
-                alert('Có lỗi kết nối tới Zoho CRM, bạn vui lòng thử lại!');
+            for (const [key, value] of Object.entries(fields)) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                zohoForm.appendChild(input);
             }
+
+            document.body.appendChild(zohoForm);
+            zohoForm.submit();
+            document.body.removeChild(zohoForm);
+
+            modalText.innerHTML = `Cảm ơn <strong>${hoDem} ${ten}</strong> (${phone}) đã đăng ký thành công chương trình <strong>Tết Khoẻ Re</strong>! Dữ liệu đã được đồng bộ lên Zoho CRM.`;
+            modal.style.display = 'flex';
+            form.reset();
         });
-        function scrollToRegister() {
-    const registerForm = document.getElementById('form-dang-ky');
-    if (registerForm) {
-        registerForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        document.getElementById('tenDangNhap').focus();
-    }
-}
 
         function closeModal() {
             modal.style.display = 'none';
