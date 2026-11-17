@@ -20,9 +20,133 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-top: 62px; /* Chừa khoảng trống cho thanh header cố định phía trên */
         }
 
-        /* Khung chuẩn tỷ lệ thiết kế */
+        /* ================= THANH HEADER CỐ ĐỊNH TRÊN CÙNG (THEO MẪU) ================= */
+        .top-sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 62px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1.5px solid #E2E8F0;
+            box-shadow: 0 4px 16px rgba(0, 51, 160, 0.08);
+            z-index: 950;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-inner {
+            width: 100%;
+            max-width: 1280px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0033A0;
+            font-weight: 900;
+            font-size: clamp(14px, 1.3vw, 18px);
+            letter-spacing: 0.4px;
+            text-decoration: none;
+        }
+
+        .header-brand span.tag-tet {
+            background: #D91E2A;
+            color: #fff;
+            font-size: 11px;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-weight: 800;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .header-cta-pill {
+            background: #C6F11E;
+            color: #0F172A;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.4px;
+            box-shadow: 0 4px 12px rgba(163, 217, 68, 0.45);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-decoration: none;
+        }
+
+        .header-cta-pill:hover {
+            transform: translateY(-2px) scale(1.04);
+            background: #b7e60b;
+            box-shadow: 0 6px 18px rgba(163, 217, 68, 0.65);
+        }
+
+        .header-menu-btn {
+            background: transparent;
+            border: none;
+            color: #2E8B57;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .header-menu-btn:hover {
+            background: #F1F5F9;
+        }
+
+        /* Menu xổ xuống khi bấm icon 3 gạch */
+        .mobile-dropdown {
+            display: none;
+            position: fixed;
+            top: 62px;
+            right: max(12px, calc((100vw - 1280px) / 2 + 16px));
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 12px 32px rgba(0, 51, 160, 0.16);
+            border: 1px solid #E2E8F0;
+            padding: 10px;
+            z-index: 960;
+            min-width: 210px;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mobile-dropdown.show {
+            display: flex;
+        }
+
+        .mobile-dropdown a {
+            text-decoration: none;
+            color: #0033A0;
+            font-size: 13.5px;
+            font-weight: 700;
+            padding: 10px 14px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .mobile-dropdown a:hover {
+            background: #EEF2F7;
+        }
+
+        /* ================= KHUNG THIẾT KẾ CHÍNH ================= */
         .landing-wrapper {
             position: relative;
             width: 100%;
@@ -118,10 +242,6 @@
             animation: sheenSweep 0.65s ease-out;
         }
 
-        .hotspot-btn:active {
-            transform: translateY(0) scale(0.98);
-        }
-
         .btn-hero {
             top: 8.55%;
             left: 39.2%;
@@ -151,13 +271,13 @@
             box-shadow: 0 4px 12px rgba(0, 51, 160, 0.25);
         }
 
-        /* ================= FIX SẠCH LỖI CHỒNG CHỮ VOUCHER TRÀ ATISÔ (ĐỒNG BỘ NỀN KEM) ================= */
+        /* ================= FIX SẠCH LỖI CHỒNG CHỮ VOUCHER TRÀ ATISÔ (CÁCH ĐỀU 35.000 ĐIỂM) ================= */
         .voucher-fix-overlay {
             position: absolute;
             top: 72.38%;
             left: 5.15%;
             width: 28.35%;
-            height: 2.95%;
+            height: 2.72%;
             background: #FEFDF0;
             z-index: 15;
             display: flex;
@@ -308,7 +428,7 @@
             box-shadow: 0 8px 20px rgba(0, 51, 160, 0.4);
         }
 
-        /* ================= PHẦN MỚI: ĐÁNH GIÁ TỪ KHÁCH HÀNG (THEO MẪU) ================= */
+        /* ================= PHẦN ĐÁNH GIÁ TỪ KHÁCH HÀNG ================= */
         .reviews-section {
             width: 100%;
             max-width: 1280px;
@@ -422,6 +542,42 @@
             font-size: 13px;
             font-style: italic;
             font-weight: 500;
+        }
+
+        /* ================= NÚT GỌI HOTLINE NỔI GÓC PHẢI (THEO MẪU) ================= */
+        @keyframes phoneRing {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            15% { transform: rotate(15deg) scale(1.08); }
+            30% { transform: rotate(-15deg) scale(1.08); }
+            45% { transform: rotate(10deg) scale(1.05); }
+            60% { transform: rotate(-10deg) scale(1.05); }
+        }
+
+        .floating-call-btn {
+            position: fixed;
+            bottom: 58px; /* Nằm ngay phía trên thanh bò đi dạo */
+            right: 22px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45), 0 0 0 6px rgba(251, 191, 36, 0.25);
+            z-index: 940;
+            transition: transform 0.25s ease;
+        }
+
+        .floating-call-btn i {
+            animation: phoneRing 2s infinite;
+        }
+
+        .floating-call-btn:hover {
+            transform: scale(1.1);
         }
 
         /* ================= KHÔNG KHÍ TẾT: HOA MAI RƠI, BÒ ĐI DẠO & PHÁO HOA ================= */
@@ -621,6 +777,30 @@
 </head>
 <body>
 
+    <!-- THANH HEADER CỐ ĐỊNH TRÊN CÙNG (THEO MẪU) -->
+    <header class="top-sticky-header">
+        <div class="header-inner">
+            <a href="#" class="header-brand">
+                <span>VINAMILK 100%</span>
+                <span class="tag-tet">TẾT KHOẺ RE</span>
+            </a>
+            <div class="header-actions">
+                <a href="#form-dang-ky" class="header-cta-pill">ĐĂNG KÝ NGAY</a>
+                <button type="button" class="header-menu-btn" onclick="toggleHeaderMenu()" title="Danh mục">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu xổ xuống khi bấm icon 3 gạch -->
+    <nav class="mobile-dropdown" id="headerDropdown">
+        <a href="https://vinamilk-1.onrender.com" target="_blank" rel="noopener noreferrer" onclick="toggleHeaderMenu()">🎁 Cổng Ưu Đãi Render</a>
+        <a href="#voucher-section" onclick="toggleHeaderMenu()">🎟️ Đổi Điểm Nhận Voucher</a>
+        <a href="#form-dang-ky" onclick="toggleHeaderMenu()">📝 Đăng Ký Thành Viên</a>
+        <a href="#reviews-section" onclick="toggleHeaderMenu()">⭐ Đánh Giá Khách Hàng</a>
+    </nav>
+
     <div class="landing-wrapper">
         <!-- Ảnh thiết kế nền -->
         <img src="images/design-bg.png" alt="Vinamilk Tết Khoẻ Re" class="design-canvas">
@@ -629,7 +809,7 @@
         <div class="scroll-zone" style="top: 12%; height: 15%;"></div>
         <div class="scroll-zone" style="top: 28%; height: 12%;"></div>
         <div class="scroll-zone" style="top: 41%; height: 17%;"></div>
-        <div class="scroll-zone" style="top: 59%; height: 12%;"></div>
+        <div class="scroll-zone" id="voucher-section" style="top: 59%; height: 12%;"></div>
 
         <!-- 3 vùng thẻ Voucher tương tác nổi lên khi rê chuột -->
         <div class="voucher-card-zone" style="left: 5.1%;" onclick="scrollToRegister()"></div>
@@ -683,8 +863,8 @@
         </form>
     </div>
 
-    <!-- PHẦN ĐÁNH GIÁ TỪ KHÁCH HÀNG (THEO MẪU) -->
-    <section class="reviews-section">
+    <!-- PHẦN ĐÁNH GIÁ TỪ KHÁCH HÀNG -->
+    <section class="reviews-section" id="reviews-section">
         <h2 class="reviews-title">ĐÁNH GIÁ TỪ KHÁCH HÀNG</h2>
         <div class="reviews-grid">
             <!-- Thẻ đánh giá 1 -->
@@ -770,6 +950,11 @@
         </div>
     </section>
 
+    <!-- Nút gọi Hotline nổi ở góc dưới bên phải (theo mẫu) -->
+    <a href="tel:1900636979" class="floating-call-btn" title="Gọi tổng đài Vinamilk: 1900 636 979">
+        <i class="fa-solid fa-phone"></i>
+    </a>
+
     <!-- Hiệu ứng hoa mai rơi & đàn bò đi dạo -->
     <div id="tet-petals-container"></div>
     <div class="cow-parade-track">
@@ -793,6 +978,11 @@
     <iframe name="zoho_hidden_iframe" id="zoho_hidden_iframe" style="display:none;"></iframe>
 
     <script>
+        function toggleHeaderMenu() {
+            const dropdown = document.getElementById('headerDropdown');
+            dropdown.classList.toggle('show');
+        }
+
         function togglePass(inputId, icon) {
             const input = document.getElementById(inputId);
             if (input.type === 'password') {
