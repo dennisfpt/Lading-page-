@@ -23,7 +23,7 @@
             padding-top: 62px; /* Chừa khoảng trống cho thanh header cố định phía trên */
         }
 
-        /* ================= THANH HEADER CỐ ĐỊNH TRÊN CÙNG (THEO MẪU) ================= */
+        /* ================= THANH HEADER CỐ ĐỊNH TRÊN CÙNG ================= */
         .top-sticky-header {
             position: fixed;
             top: 0;
@@ -271,7 +271,7 @@
             box-shadow: 0 4px 12px rgba(0, 51, 160, 0.25);
         }
 
-        /* ================= FIX SẠCH LỖI CHỒNG CHỮ VOUCHER TRÀ ATISÔ (CÁCH ĐỀU 35.000 ĐIỂM) ================= */
+        /* ================= FIX SẠCH LỖI CHỒNG CHỮ VOUCHER TRÀ ATISÔ ================= */
         .voucher-fix-overlay {
             position: absolute;
             top: 72.38%;
@@ -428,6 +428,161 @@
             box-shadow: 0 8px 20px rgba(0, 51, 160, 0.4);
         }
 
+        /* ================= KHU VỰC 3 BAO LÌ XÌ PHÚC - LỘC - THỌ ================= */
+        .lixi-section {
+            width: 100%;
+            max-width: 1280px;
+            background: linear-gradient(180deg, #FEFDF0 0%, #FFF5F5 100%);
+            padding: 48px 24px 56px;
+            text-align: center;
+            border-top: 2px dashed #FCA5A5;
+            border-bottom: 2px dashed #FCA5A5;
+        }
+
+        .lixi-container {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .lixi-title {
+            color: #D91E2A;
+            font-size: clamp(22px, 2.5vw, 32px);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .lixi-subtitle {
+            color: #7C2D12;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .lixi-grid {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        @keyframes lixiWobble {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-2.5deg); }
+            75% { transform: rotate(2.5deg); }
+        }
+
+        .lixi-card {
+            width: 190px;
+            height: 255px;
+            background: linear-gradient(160deg, #E11D48 0%, #9F1239 100%);
+            border: 3px solid #FACC15;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(159, 18, 57, 0.28);
+            transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease;
+            user-select: none;
+            animation: lixiWobble 3s ease-in-out infinite;
+        }
+
+        .lixi-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .lixi-card:nth-child(3) {
+            animation-delay: 0.8s;
+        }
+
+        .lixi-card:hover:not(.disabled):not(.opened) {
+            animation: none;
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 16px 34px rgba(225, 29, 72, 0.42);
+        }
+
+        .lixi-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: #BE123C;
+            border-bottom: 2.5px solid #FACC15;
+            border-radius: 14px 14px 50% 50%;
+        }
+
+        .lixi-coin {
+            width: 82px;
+            height: 82px;
+            background: radial-gradient(circle, #FEF08A 0%, #EAB308 100%);
+            border: 3px solid #FEF9C3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            color: #9F1239;
+            z-index: 1;
+            margin-top: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+        }
+
+        .lixi-label {
+            color: #FEF08A;
+            font-size: 13px;
+            font-weight: 800;
+            margin-top: 18px;
+            letter-spacing: 1px;
+        }
+
+        .lixi-card.opened {
+            animation: none;
+            background: linear-gradient(160deg, #FEFCE8 0%, #FEF08A 100%);
+            border-color: #CA8A04;
+            transform: scale(1.05);
+            cursor: default;
+        }
+
+        .lixi-card.opened::before {
+            display: none;
+        }
+
+        .lixi-card.disabled {
+            animation: none;
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .lixi-result-box {
+            margin: 28px auto 0;
+            max-width: 620px;
+            padding: 18px 22px;
+            border-radius: 14px;
+            font-size: 16.5px;
+            font-weight: 700;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .lixi-result-win {
+            background: #DCFCE7;
+            color: #166534;
+            border: 2px solid #4ADE80;
+        }
+
+        .lixi-result-lose {
+            background: #F1F5F9;
+            color: #334155;
+            border: 2px solid #CBD5E1;
+        }
+
         /* ================= PHẦN ĐÁNH GIÁ TỪ KHÁCH HÀNG ================= */
         .reviews-section {
             width: 100%;
@@ -544,7 +699,7 @@
             font-weight: 500;
         }
 
-        /* ================= NÚT GỌI HOTLINE NỔI GÓC PHẢI (THEO MẪU) ================= */
+        /* ================= NÚT GỌI HOTLINE NỔI GÓC PHẢI ================= */
         @keyframes phoneRing {
             0%, 100% { transform: rotate(0deg) scale(1); }
             15% { transform: rotate(15deg) scale(1.08); }
@@ -555,7 +710,7 @@
 
         .floating-call-btn {
             position: fixed;
-            bottom: 58px; /* Nằm ngay phía trên thanh bò đi dạo */
+            bottom: 58px;
             right: 22px;
             width: 56px;
             height: 56px;
@@ -772,12 +927,16 @@
                 height: 36px;
                 font-size: 12px;
             }
+            .lixi-card {
+                width: 150px;
+                height: 210px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- THANH HEADER CỐ ĐỊNH TRÊN CÙNG (THEO MẪU) -->
+    <!-- THANH HEADER CỐ ĐỊNH TRÊN CÙNG -->
     <header class="top-sticky-header">
         <div class="header-inner">
             <a href="#" class="header-brand">
@@ -785,7 +944,7 @@
                 <span class="tag-tet">TẾT KHOẺ RE</span>
             </a>
             <div class="header-actions">
-                <a href="#form-dang-ky" class="header-cta-pill">ĐĂNG KÝ NGAY</a>
+                <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="header-cta-pill">ĐĂNG KÝ NGAY</a>
                 <button type="button" class="header-menu-btn" onclick="toggleHeaderMenu()" title="Danh mục">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -795,9 +954,9 @@
 
     <!-- Menu xổ xuống khi bấm icon 3 gạch -->
     <nav class="mobile-dropdown" id="headerDropdown">
-        <a href="https://vinamilk-1.onrender.com" target="_blank" rel="noopener noreferrer" onclick="toggleHeaderMenu()">🎁 Cổng Ưu Đãi Render</a>
+        <a href="#boc-lixi" onclick="toggleHeaderMenu()">🧧 Bốc Bao Lì Xì Phúc Lộc Thọ</a>
         <a href="#voucher-section" onclick="toggleHeaderMenu()">🎟️ Đổi Điểm Nhận Voucher</a>
-        <a href="#form-dang-ky" onclick="toggleHeaderMenu()">📝 Đăng Ký Thành Viên</a>
+        <a href="#form-dang-ky" onclick="toggleHeaderMenu(); scrollToRegister(); return false;">📝 Đăng Ký Thành Viên</a>
         <a href="#reviews-section" onclick="toggleHeaderMenu()">⭐ Đánh Giá Khách Hàng</a>
     </nav>
 
@@ -821,13 +980,13 @@
         <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 55.6%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Nước Ép"></button>
         <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 86.1%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Cửa Hàng Vinamilk"></button>
 
-        <!-- Nút Hero CTA dẫn thẳng tới ứng dụng Render -->
-        <a href="https://vinamilk-1.onrender.com" target="_blank" rel="noopener noreferrer" class="hotspot-btn btn-hero" title="Đăng kí ưu đãi"></a>
+        <!-- Nút Hero CTA cuộn mượt xuống Form đăng ký ngay trên trang -->
+        <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-hero" title="Đăng kí ưu đãi"></a>
 
         <!-- Các nút CTA phụ trượt xuống Form đăng ký -->
-        <a href="#form-dang-ky" class="hotspot-btn btn-products" title="Đăng kí ngay"></a>
-        <a href="#form-dang-ky" class="hotspot-btn btn-loyalty" title="Đăng kí ngay"></a>
-        <a href="#form-dang-ky" class="hotspot-btn btn-steps" title="Đăng kí ngay"></a>
+        <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-products" title="Đăng kí ngay"></a>
+        <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-loyalty" title="Đăng kí ngay"></a>
+        <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-steps" title="Đăng kí ngay"></a>
 
         <!-- Lớp vá sạch lỗi chữ chồng đè ở thẻ Voucher Trà Atisô đầu tiên -->
         <div class="voucher-fix-overlay" onclick="scrollToRegister()">
@@ -859,9 +1018,34 @@
                 <i class="fa-regular fa-eye-slash toggle-password" onclick="togglePass('xacNhanMatKhau', this)" title="Hiện/Ẩn mật khẩu"></i>
             </div>
 
-            <button type="submit" class="submit-real-btn">Đăng ký nhận ưu đãi ngay</button>
+            <button type="submit" id="btnSubmitRegister" class="submit-real-btn">Đăng ký nhận ưu đãi ngay</button>
         </form>
     </div>
+
+    <!-- KHU VỰC BỐC 3 BAO LÌ XÌ PHÚC - LỘC - THỌ -->
+    <section class="lixi-section" id="boc-lixi">
+        <div class="lixi-container">
+            <h2 class="lixi-title">🧧 Bốc Bao Lì Xì Phúc - Lộc - Thọ 🧧</h2>
+            <p class="lixi-subtitle">Chọn 1 trong 3 bao lì xì bên dưới để thử vận may đầu năm (ngẫu nhiên từ 0đ đến 100.000đ)!</p>
+
+            <div class="lixi-grid">
+                <div class="lixi-card" onclick="moBaoLiXi(this, 'PHÚC')">
+                    <div class="lixi-coin">PHÚC</div>
+                    <div class="lixi-label">CHẠM ĐỂ MỞ</div>
+                </div>
+                <div class="lixi-card" onclick="moBaoLiXi(this, 'LỘC')">
+                    <div class="lixi-coin">LỘC</div>
+                    <div class="lixi-label">CHẠM ĐỂ MỞ</div>
+                </div>
+                <div class="lixi-card" onclick="moBaoLiXi(this, 'THỌ')">
+                    <div class="lixi-coin">THỌ</div>
+                    <div class="lixi-label">CHẠM ĐỂ MỞ</div>
+                </div>
+            </div>
+
+            <div id="lixiResult" class="lixi-result-box"></div>
+        </div>
+    </section>
 
     <!-- PHẦN ĐÁNH GIÁ TỪ KHÁCH HÀNG -->
     <section class="reviews-section" id="reviews-section">
@@ -950,7 +1134,7 @@
         </div>
     </section>
 
-    <!-- Nút gọi Hotline nổi ở góc dưới bên phải (theo mẫu) -->
+    <!-- Nút gọi Hotline nổi ở góc dưới bên phải -->
     <a href="tel:1900636979" class="floating-call-btn" title="Gọi tổng đài Vinamilk: 1900 636 979">
         <i class="fa-solid fa-phone"></i>
     </a>
@@ -1002,7 +1186,51 @@
                 registerForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 setTimeout(() => {
                     document.getElementById('tenDangNhap').focus();
-                }, 400);
+                }, 450);
+            }
+        }
+
+        // ================= XỬ LÝ BỐC 3 BAO LÌ XÌ PHÚC - LỘC - THỌ =================
+        let daBocLiXi = false;
+        let phanThuongLiXi = 0;
+
+        function moBaoLiXi(cardElement, tenBao) {
+            if (daBocLiXi) return;
+            daBocLiXi = true;
+
+            // Random số nguyên từ 0 đến 100 (tương ứng 0đ - 100.000đ)
+            const soNgauNhien = Math.floor(Math.random() * 101);
+            phanThuongLiXi = soNgauNhien;
+
+            const allCards = document.querySelectorAll('.lixi-card');
+            allCards.forEach(card => {
+                if (card !== cardElement) {
+                    card.classList.add('disabled');
+                }
+            });
+
+            cardElement.classList.add('opened');
+            const resultBox = document.getElementById('lixiResult');
+            resultBox.style.display = 'block';
+
+            if (soNgauNhien === 0) {
+                cardElement.innerHTML = `
+                    <div style="font-size: 38px; margin-bottom: 6px;">🍀</div>
+                    <div style="color: #D91E2A; font-weight: 900; font-size: 22px;">0đ</div>
+                    <div style="color: #475569; font-size: 13px; font-weight: 700; margin-top: 6px;">Bao ${tenBao}</div>
+                `;
+                resultBox.className = 'lixi-result-box lixi-result-lose';
+                resultBox.innerHTML = `Bạn mở bao <strong>${tenBao}</strong> trúng <strong>0đ</strong> — <strong>Chúc bạn may mắn lần sau!</strong>`;
+            } else {
+                const soTienHienThi = (soNgauNhien * 1000).toLocaleString('vi-VN') + 'đ';
+                cardElement.innerHTML = `
+                    <div style="font-size: 36px; margin-bottom: 6px;">🎉</div>
+                    <div style="color: #D91E2A; font-weight: 900; font-size: 22px;">${soTienHienThi}</div>
+                    <div style="color: #7C2D12; font-size: 13px; font-weight: 700; margin-top: 6px;">Lộc ${tenBao}</div>
+                `;
+                resultBox.className = 'lixi-result-box lixi-result-win';
+                resultBox.innerHTML = `🎊 Chúc mừng! Bạn mở bao <strong>${tenBao}</strong> trúng lì xì <strong>${soTienHienThi}</strong> (Mã: <strong>TET${soNgauNhien}K</strong>)!`;
+                launchTetFireworks();
             }
         }
 
@@ -1019,12 +1247,19 @@
             revealObserver.observe(el);
         });
 
+        // Bắn pháo hoa ngay khi bấm vào nút Đăng ký
+        const btnSubmitRegister = document.getElementById('btnSubmitRegister');
+        btnSubmitRegister.addEventListener('click', function() {
+            launchTetFireworks();
+        });
+
         const form = document.getElementById('form-dang-ky');
         const modal = document.getElementById('successModal');
         const modalText = document.getElementById('modalText');
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+            launchTetFireworks();
             
             const tenDangNhap = document.getElementById('tenDangNhap').value.trim();
             const hoDem = document.getElementById('hoDem').value.trim();
@@ -1073,9 +1308,11 @@
             zohoForm.submit();
             document.body.removeChild(zohoForm);
 
-            // Bắn pháo hoa chúc mừng + mở popup
-            launchTetFireworks();
-            modalText.innerHTML = `Cảm ơn <strong>${hoDem} ${ten}</strong> (${phone}) đã đăng ký thành công chương trình <strong>Tết Khoẻ Re</strong>! Dữ liệu đã được đồng bộ lên Zoho CRM.`;
+            const thongTinLiXi = phanThuongLiXi > 0
+                ? `<br>🎁 Kèm voucher lì xì: <strong>${(phanThuongLiXi * 1000).toLocaleString('vi-VN')}đ (TET${phanThuongLiXi}K)</strong>`
+                : '';
+
+            modalText.innerHTML = `Cảm ơn <strong>${hoDem} ${ten}</strong> (${phone}) đã đăng ký thành công chương trình <strong>Tết Khoẻ Re</strong>!${thongTinLiXi}`;
             modal.style.display = 'flex';
             form.reset();
         });
@@ -1109,7 +1346,7 @@
         }
         startMaiBlossomRain();
 
-        // 2. Hiệu ứng bắn pháo hoa rực rỡ khi ấn Đăng ký thành công
+        // 2. Hiệu ứng bắn pháo hoa rực rỡ khi ấn Đăng ký
         function launchTetFireworks() {
             const canvas = document.getElementById('fireworks-canvas');
             const ctx = canvas.getContext('2d');
