@@ -363,12 +363,10 @@
             overflow: hidden;
         }
 
-        /* Cắt gọn chiều cao hiển thị đúng tới ngay bên dưới khu vực Đổi điểm nhận Voucher */
         .design-top-viewport {
             position: relative;
             width: 100%;
             overflow: hidden;
-            /* Tỷ lệ hiển thị từ đầu ảnh tới hết phần Đổi điểm nhận Voucher (78.5% chiều cao ảnh gốc) */
             aspect-ratio: 1280 / 4820;
         }
 
@@ -397,7 +395,6 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Các tọa độ nút bấm quy đổi theo khung cắt 78.5% phía trên */
         .voucher-card-zone {
             position: absolute;
             top: 92.1%;
@@ -547,7 +544,6 @@
             overflow: hidden;
         }
 
-        /* Viền răng cưa tím nhạt ở đáy banner */
         .referral-banner-section::after {
             content: "";
             position: absolute;
@@ -561,7 +557,6 @@
             z-index: 1;
         }
 
-        /* Trang trí cành mai, đèn lồng Tết, bao lì xì góc banner */
         .tet-corner-deco {
             position: absolute;
             pointer-events: none;
@@ -904,7 +899,6 @@
             line-height: 1.75;
         }
 
-        /* Khối minh họa xanh dương bên phải giống ảnh mẫu */
         .nf-visual-card {
             position: relative;
             background: repeating-linear-gradient(
@@ -1943,7 +1937,6 @@
             e.preventDefault();
             launchDynamicFireworks(16);
             
-            const tenDangNhap = document.getElementById('tenDangNhap').value.trim();
             const hoDem = document.getElementById('hoDem').value.trim();
             const ten = document.getElementById('ten').value.trim();
             const phone = document.getElementById('sdt').value.trim();
@@ -1956,6 +1949,7 @@
                 return;
             }
 
+            // Đồng bộ chuẩn UTF-8 tới Zoho CRM (Webform: Lading)
             const zohoForm = document.createElement('form');
             zohoForm.method = 'POST';
             zohoForm.action = 'https://crm.zoho.com/crm/WebToContactForm';
@@ -1974,9 +1968,7 @@
                 'First Name': ten,
                 'Email': email,
                 'Phone': phone,
-                'Account Name': tenDangNhap,
-                'Lead Source': 'Yêu cầu từ Web',
-                'Description': maLiXiDaNhan ? `Trúng lì xì: ${maLiXiDaNhan} (${(phanThuongLiXi * 1000).toLocaleString('vi-VN')}đ)` : 'Đăng ký Tết Khoẻ Re'
+                'Title': maLiXiDaNhan ? `Trúng lì xì: ${maLiXiDaNhan} (${(phanThuongLiXi * 1000).toLocaleString('vi-VN')}đ)` : 'Đăng ký Tết Khoẻ Re'
             };
 
             for (const [key, value] of Object.entries(fields)) {
