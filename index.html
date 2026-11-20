@@ -353,17 +353,26 @@
             transform: translateY(-2px) scale(1.03);
         }
 
-        /* ================= KHUNG THIẾT KẾ CHÍNH ================= */
-        .landing-wrapper {
+        /* ================= KHUNG THIẾT KẾ TRÊN (TỪ HERO ĐẾN HẾT PHẦN ĐỔI ĐIỂM VOUCHER) ================= */
+        .landing-top-crop {
             position: relative;
             width: 100%;
             max-width: 1280px;
             background: #FEFDF0;
-            box-shadow: 0 0 50px rgba(0, 51, 160, 0.08);
+            box-shadow: 0 0 50px rgba(0, 51, 160, 0.06);
             overflow: hidden;
         }
 
-        .design-canvas {
+        /* Cắt gọn chiều cao hiển thị đúng tới ngay bên dưới khu vực Đổi điểm nhận Voucher */
+        .design-top-viewport {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            /* Tỷ lệ hiển thị từ đầu ảnh tới hết phần Đổi điểm nhận Voucher (78.5% chiều cao ảnh gốc) */
+            aspect-ratio: 1280 / 4820;
+        }
+
+        .design-canvas-top {
             width: 100%;
             height: auto;
             display: block;
@@ -388,10 +397,11 @@
             transform: translateY(0) scale(1);
         }
 
+        /* Các tọa độ nút bấm quy đổi theo khung cắt 78.5% phía trên */
         .voucher-card-zone {
             position: absolute;
-            top: 72.35%;
-            height: 5.55%;
+            top: 92.1%;
+            height: 7.1%;
             width: 28.5%;
             border-radius: 12px;
             z-index: 12;
@@ -448,16 +458,16 @@
         }
 
         .btn-hero {
-            top: 8.55%;
+            top: 10.88%;
             left: 39.2%;
             width: 35.2%;
-            height: 1.4%;
+            height: 1.78%;
             animation: pulseGlow 2.2s infinite;
         }
 
-        .btn-products { top: 38.35%; left: 59.5%; width: 13.5%; height: 0.9%; }
-        .btn-loyalty  { top: 56.05%; left: 42.5%; width: 15%;   height: 0.95%; }
-        .btn-steps    { top: 70.05%; left: 59.5%; width: 13.5%; height: 0.9%; }
+        .btn-products { top: 48.85%; left: 59.5%; width: 13.5%; height: 1.15%; }
+        .btn-loyalty  { top: 71.40%; left: 42.5%; width: 15%;   height: 1.21%; }
+        .btn-steps    { top: 89.20%; left: 59.5%; width: 13.5%; height: 1.15%; }
 
         .btn-voucher-login {
             position: absolute;
@@ -476,12 +486,13 @@
             box-shadow: 0 4px 12px rgba(0, 51, 160, 0.25);
         }
 
+        /* Fix chữ chồng đè ở thẻ Voucher Trà Atisô đầu tiên */
         .voucher-fix-overlay {
             position: absolute;
-            top: 72.38%;
+            top: 92.18%;
             left: 5.15%;
             width: 28.35%;
-            height: 2.72%;
+            height: 3.48%;
             background: #FEFDF0;
             z-index: 15;
             display: flex;
@@ -525,137 +536,18 @@
             line-height: 1;
         }
 
-        /* ================= FORM ĐĂNG KÝ CHE PHỦ HOÀN TOÀN VÙNG CŨ TRÊN ẢNH ================= */
-        .overlay-form-container {
-            position: absolute;
-            top: 83.35%;
-            left: 19.8%;
-            width: 65.5%;
-            background: #FEFDF0;
-            padding: 10px 14px 150px;
-            z-index: 20;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .overlay-form-container.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lixi-form-banner {
-            display: none;
-            background: #FEF2F2;
-            border: 1.5px dashed #D91E2A;
-            color: #991B1B;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .form-row-2 {
-            display: grid;
-            grid-template-columns: 1.35fr 1fr;
-            gap: 14px;
-        }
-
-        .password-wrapper {
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .real-input {
-            width: 100%;
-            height: 44px;
-            background: #EEF2F7;
-            border: none;
-            border-bottom: 1.5px solid #0033A0;
-            border-radius: 4px 4px 0 0;
-            padding: 0 42px 0 14px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #0033A0;
-            outline: none;
-            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .real-input:hover {
-            transform: translateX(3px);
-            background: #f6f9fc;
-        }
-
-        .real-input:focus {
-            background: #ffffff;
-            transform: translateX(4px);
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.14);
-        }
-
-        .real-input::placeholder {
-            color: #0033A0;
-            opacity: 0.85;
-            font-weight: 600;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 14px;
-            color: #0033A0;
-            cursor: pointer;
-            font-size: 16px;
-            opacity: 0.8;
-            transition: 0.2s;
-            user-select: none;
-        }
-
-        .toggle-password:hover {
-            opacity: 1;
-            transform: scale(1.15);
-        }
-
-        .submit-real-btn {
-            position: relative;
-            overflow: hidden;
-            margin-top: 8px;
-            height: 48px;
-            background: #0033A0;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            letter-spacing: 0.5px;
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.25);
-        }
-
-        .submit-real-btn:hover {
-            background: #002169;
-            transform: translateY(-2px) scale(1.015);
-            box-shadow: 0 8px 20px rgba(0, 51, 160, 0.4);
-        }
-
-        /* ================= BANNER 1: GIỚI THIỆU BẠN MỚI (500.000 ĐIỂM) ================= */
+        /* ================= PHẦN 1 NẰM DƯỚI ĐỔI ĐIỂM: GIỚI THIỆU BẠN MỚI (500.000 ĐIỂM) ================= */
         .referral-banner-section {
             position: relative;
             width: 100%;
             max-width: 1280px;
             background-color: #E7F587;
-            padding: 76px 24px 120px;
+            padding: 82px 24px 124px;
             text-align: center;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0, 51, 160, 0.05);
         }
 
+        /* Viền răng cưa tím nhạt ở đáy banner */
         .referral-banner-section::after {
             content: "";
             position: absolute;
@@ -668,6 +560,20 @@
                 linear-gradient(225deg, transparent 50%, #C7B8EA 50%) 0 0 / 58px 48px repeat-x;
             z-index: 1;
         }
+
+        /* Trang trí cành mai, đèn lồng Tết, bao lì xì góc banner */
+        .tet-corner-deco {
+            position: absolute;
+            pointer-events: none;
+            z-index: 2;
+            font-size: clamp(24px, 2.8vw, 38px);
+            user-select: none;
+        }
+
+        .deco-top-left { top: 10px; left: 16px; }
+        .deco-top-right { top: 10px; right: 18px; display: flex; align-items: flex-start; gap: 6px; }
+        .deco-mid-left { bottom: 32%; left: 5%; transform: rotate(-16deg); font-size: 32px; }
+        .deco-mid-right { bottom: 32%; right: 7%; transform: rotate(16deg); font-size: 32px; }
 
         .referral-content {
             position: relative;
@@ -732,8 +638,8 @@
 
         .coin-deco {
             position: absolute;
-            width: 68px;
-            height: 44px;
+            width: 66px;
+            height: 42px;
             border-radius: 50%;
             background: #10D876;
             border: 3px solid #002395;
@@ -751,18 +657,19 @@
             border: 2px solid #002395;
         }
 
-        .coin-1 { top: 12%; left: 10%; }
-        .coin-2 { top: 44%; left: 18%; animation-delay: 0.7s; transform: rotate(22deg); }
-        .coin-3 { top: 24%; right: 9%; animation-delay: 1.2s; transform: rotate(12deg); }
-        .coin-4 { bottom: 26%; right: 17%; animation-delay: 1.8s; transform: rotate(-25deg); }
+        .coin-1 { top: 8%; left: 11%; }
+        .coin-2 { top: 44%; left: 19%; animation-delay: 0.7s; transform: rotate(22deg); }
+        .coin-3 { top: 24%; right: 14%; animation-delay: 1.2s; transform: rotate(12deg); }
+        .coin-4 { bottom: 25%; right: 18%; animation-delay: 1.8s; transform: rotate(-25deg); }
 
-        /* ================= BANNER 2: CHIA SẺ & NHẬN THƯỞNG (4 MỐC ĐIỂM) ================= */
+        /* ================= PHẦN 2: CHIA SẺ & NHẬN THƯỞNG (4 MỐC ĐIỂM) ================= */
         .share-reward-section {
+            position: relative;
             width: 100%;
             max-width: 1280px;
             background-color: #FEFDF0;
             padding: 64px 24px 68px;
-            border-bottom: 1.5px solid #F1F5F9;
+            overflow: hidden;
         }
 
         .share-reward-title {
@@ -783,6 +690,7 @@
         }
 
         .share-card {
+            position: relative;
             background: #F7F4E4;
             border-radius: 12px;
             padding: 28px 20px 34px;
@@ -815,7 +723,6 @@
             margin-bottom: 24px;
         }
 
-        /* Huy hiệu đám mây tím nhạt chứa đồng xu + điểm thưởng */
         .cloud-badge {
             position: relative;
             width: 158px;
@@ -893,7 +800,6 @@
             line-height: 1.15;
         }
 
-        /* Thanh thông báo màu vàng chanh dưới 4 thẻ */
         .share-cta-bar {
             max-width: 1080px;
             margin: 0 auto;
@@ -932,6 +838,287 @@
         .share-login-btn:hover {
             background: #001866;
             transform: translateY(-2px);
+        }
+
+        /* ================= PHẦN 3: BẠN MỚI CŨNG CÓ QUÀ ================= */
+        .new-friend-gift-section {
+            width: 100%;
+            max-width: 1280px;
+            background-color: #FEFDF0;
+            padding: 40px 24px 68px;
+        }
+
+        .new-friend-container {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.95fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nf-title {
+            color: #002395;
+            font-size: clamp(26px, 3.2vw, 38px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            letter-spacing: -0.4px;
+        }
+
+        .nf-highlight-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .nf-highlight-label {
+            color: #1E293B;
+            font-size: 14.5px;
+            font-weight: 600;
+        }
+
+        .nf-green-pill {
+            background: #86EFAC;
+            color: #002395;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 4px;
+        }
+
+        .nf-rules-box {
+            margin-top: 20px;
+            background: #FFFFFF;
+            border-radius: 10px;
+            padding: 18px 20px 18px 32px;
+            box-shadow: 0 4px 16px rgba(0, 35, 149, 0.05);
+        }
+
+        .nf-rules-box ul {
+            color: #002395;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.75;
+        }
+
+        /* Khối minh họa xanh dương bên phải giống ảnh mẫu */
+        .nf-visual-card {
+            position: relative;
+            background: repeating-linear-gradient(
+                90deg,
+                #0033CC 0px,
+                #0033CC 18px,
+                #002BB8 18px,
+                #002BB8 36px
+            );
+            border-radius: 14px;
+            min-height: 360px;
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 14px 30px rgba(0, 51, 204, 0.22);
+        }
+
+        .nf-phone-mockup {
+            width: 170px;
+            height: 270px;
+            background: #FDE047;
+            border: 5px solid #FFFFFF;
+            border-radius: 26px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+            z-index: 2;
+        }
+
+        .nf-phone-bag {
+            background: #0033A0;
+            color: #fff;
+            font-weight: 900;
+            font-size: 15px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .nf-float-tag {
+            position: absolute;
+            font-size: 12px;
+            font-weight: 900;
+            padding: 8px 14px;
+            border-radius: 8px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+            text-transform: uppercase;
+        }
+
+        .tag-pink {
+            top: 24%;
+            left: 8%;
+            background: #F472B6;
+            color: #fff;
+            transform: rotate(22deg);
+        }
+
+        .tag-orange {
+            top: 12%;
+            right: 10%;
+            background: #F97316;
+            color: #fff;
+            transform: rotate(-28deg);
+        }
+
+        .tag-green {
+            top: 42%;
+            right: 8%;
+            background: #22C55E;
+            color: #fff;
+            transform: rotate(-6deg);
+        }
+
+        /* ================= KHU VỰC ĐĂNG KÝ THÀNH VIÊN ================= */
+        .register-section-wrapper {
+            width: 100%;
+            max-width: 1280px;
+            background: #FEFDF0;
+            padding: 48px 20px 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-top: 2px dashed #CBD5E1;
+        }
+
+        .register-section-heading {
+            color: #0033A0;
+            font-size: clamp(22px, 2.5vw, 32px);
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .register-section-sub {
+            color: #475569;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .overlay-form-container {
+            width: 100%;
+            max-width: 720px;
+            background: #FFFFFF;
+            padding: 28px 26px 32px;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0, 51, 160, 0.1);
+            border-top: 6px solid #0033A0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .lixi-form-banner {
+            display: none;
+            background: #FEF2F2;
+            border: 1.5px dashed #D91E2A;
+            color: #991B1B;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1.35fr 1fr;
+            gap: 14px;
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .real-input {
+            width: 100%;
+            height: 46px;
+            background: #EEF2F7;
+            border: none;
+            border-bottom: 1.5px solid #0033A0;
+            border-radius: 6px 6px 0 0;
+            padding: 0 42px 0 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0033A0;
+            outline: none;
+            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .real-input:hover {
+            background: #f6f9fc;
+        }
+
+        .real-input:focus {
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.14);
+        }
+
+        .real-input::placeholder {
+            color: #0033A0;
+            opacity: 0.85;
+            font-weight: 600;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            color: #0033A0;
+            cursor: pointer;
+            font-size: 16px;
+            opacity: 0.8;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .toggle-password:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        .submit-real-btn {
+            position: relative;
+            overflow: hidden;
+            margin-top: 8px;
+            height: 50px;
+            background: #0033A0;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.25);
+        }
+
+        .submit-real-btn:hover {
+            background: #002169;
+            transform: translateY(-2px) scale(1.015);
+            box-shadow: 0 8px 20px rgba(0, 51, 160, 0.4);
         }
 
         /* ================= PHẦN ĐÁNH GIÁ TỪ KHÁCH HÀNG ================= */
@@ -1105,18 +1292,9 @@
         }
 
         @keyframes fallAndSway {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-                opacity: 0.95;
-            }
-            50% {
-                transform: translateY(50vh) translateX(35px) rotate(180deg);
-                opacity: 0.9;
-            }
-            100% {
-                transform: translateY(108vh) translateX(-25px) rotate(360deg);
-                opacity: 0.2;
-            }
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.95; }
+            50% { transform: translateY(50vh) translateX(35px) rotate(180deg); opacity: 0.9; }
+            100% { transform: translateY(108vh) translateX(-25px) rotate(360deg); opacity: 0.2; }
         }
 
         .cow-parade-track {
@@ -1247,6 +1425,9 @@
             .share-reward-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .new-friend-container {
+                grid-template-columns: 1fr;
+            }
             .reviews-grid {
                 grid-template-columns: 1fr;
                 max-width: 480px;
@@ -1254,18 +1435,6 @@
         }
 
         @media (max-width: 768px) {
-            .overlay-form-container {
-                padding: 8px 10px 75px;
-                gap: 8px;
-            }
-            .real-input {
-                height: 32px;
-                font-size: 11px;
-            }
-            .submit-real-btn {
-                height: 36px;
-                font-size: 12px;
-            }
             .lixi-card {
                 width: 155px;
                 height: 220px;
@@ -1275,7 +1444,10 @@
                 height: 30px;
             }
             .referral-banner-section {
-                padding: 52px 16px 85px;
+                padding: 56px 16px 88px;
+            }
+            .form-row-2 {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1308,9 +1480,10 @@
     <nav class="mobile-dropdown" id="headerDropdown">
         <a href="#boc-lixi" onclick="toggleHeaderMenu()">🧧 Bốc Bao Lì Xì Phúc Lộc Thọ</a>
         <a href="#voucher-section" onclick="toggleHeaderMenu()">🎟️ Đổi Điểm Nhận Voucher</a>
-        <a href="#form-dang-ky" onclick="toggleHeaderMenu(); scrollToRegister(); return false;">📝 Đăng Ký Thành Viên</a>
         <a href="#referral-section" onclick="toggleHeaderMenu()">🎁 Giới Thiệu Bạn Mới 500K</a>
-        <a href="#share-reward-section" onclick="toggleHeaderMenu()">🏅 Chia Sẻ & Nhận Thưởng</a>
+        <a href="#share-reward-section" onclick="toggleHeaderMenu()">🏅 Chia Sẻ &amp; Nhận Thưởng</a>
+        <a href="#new-friend-gift" onclick="toggleHeaderMenu()">🎉 Bạn Mới Cũng Có Quà</a>
+        <a href="#form-dang-ky" onclick="toggleHeaderMenu(); scrollToRegister(); return false;">📝 Đăng Ký Thành Viên</a>
         <a href="#reviews-section" onclick="toggleHeaderMenu()">⭐ Đánh Giá Khách Hàng</a>
     </nav>
 
@@ -1352,42 +1525,178 @@
         <div id="lixiResult" class="lixi-result-box"></div>
     </section>
 
-    <div class="landing-wrapper">
-        <!-- Ảnh thiết kế nền -->
-        <img src="images/design-bg.png" alt="Vinamilk Tết Khoẻ Re" class="design-canvas">
+    <!-- PHẦN TRÊN: HERO BANNER + SẢN PHẨM + TÍCH ĐIỂM + ĐỔI ĐIỂM NHẬN VOUCHER -->
+    <div class="landing-top-crop">
+        <div class="design-top-viewport">
+            <img src="images/design-bg.png" alt="Vinamilk Tết Khoẻ Re" class="design-canvas-top">
 
-        <!-- Các vùng kích hoạt hiệu ứng động khi cuộn trang tới -->
-        <div class="scroll-zone" style="top: 12%; height: 15%;"></div>
-        <div class="scroll-zone" style="top: 28%; height: 12%;"></div>
-        <div class="scroll-zone" style="top: 41%; height: 17%;"></div>
-        <div class="scroll-zone" id="voucher-section" style="top: 59%; height: 12%;"></div>
+            <div class="scroll-zone" style="top: 15%; height: 19%;"></div>
+            <div class="scroll-zone" style="top: 36%; height: 15%;"></div>
+            <div class="scroll-zone" style="top: 52%; height: 22%;"></div>
+            <div class="scroll-zone" id="voucher-section" style="top: 75%; height: 15%;"></div>
 
-        <!-- 3 vùng thẻ Voucher tương tác nổi lên khi rê chuột -->
-        <div class="voucher-card-zone" style="left: 5.1%;" onclick="scrollToRegister()"></div>
-        <div class="voucher-card-zone" style="left: 35.75%;" onclick="scrollToRegister()"></div>
-        <div class="voucher-card-zone" style="left: 66.4%;" onclick="scrollToRegister()"></div>
+            <!-- 3 vùng thẻ Voucher tương tác nổi lên khi rê chuột -->
+            <div class="voucher-card-zone" style="left: 5.1%;" onclick="scrollToRegister()"></div>
+            <div class="voucher-card-zone" style="left: 35.75%;" onclick="scrollToRegister()"></div>
+            <div class="voucher-card-zone" style="left: 66.4%;" onclick="scrollToRegister()"></div>
 
-        <!-- 3 nút Đăng nhập tương tác tại khu vực Voucher -->
-        <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 25.1%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Trà Atisô"></button>
-        <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 55.6%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Nước Ép"></button>
-        <button type="button" class="btn-voucher-login" style="top: 76.75%; left: 86.1%; width: 6.8%; height: 0.65%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Cửa Hàng Vinamilk"></button>
+            <!-- 3 nút Đăng nhập tương tác tại khu vực Voucher -->
+            <button type="button" class="btn-voucher-login" style="top: 97.75%; left: 25.1%; width: 6.8%; height: 0.85%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Trà Atisô"></button>
+            <button type="button" class="btn-voucher-login" style="top: 97.75%; left: 55.6%; width: 6.8%; height: 0.85%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Nước Ép"></button>
+            <button type="button" class="btn-voucher-login" style="top: 97.75%; left: 86.1%; width: 6.8%; height: 0.85%;" onclick="scrollToRegister()" title="Đăng nhập nhận Voucher Cửa Hàng Vinamilk"></button>
 
-        <!-- Nút Hero CTA cuộn mượt xuống Form đăng ký ngay trên trang -->
-        <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-hero" title="Đăng kí ưu đãi"></a>
+            <!-- Nút Hero CTA cuộn mượt xuống Form đăng ký -->
+            <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-hero" title="Đăng kí ưu đãi"></a>
 
-        <!-- Các nút CTA phụ trượt xuống Form đăng ký -->
-        <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-products" title="Đăng kí ngay"></a>
-        <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-loyalty" title="Đăng kí ngay"></a>
-        <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-steps" title="Đăng kí ngay"></a>
+            <!-- Các nút CTA phụ trượt xuống Form đăng ký -->
+            <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-products" title="Đăng kí ngay"></a>
+            <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-loyalty" title="Đăng kí ngay"></a>
+            <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="hotspot-btn btn-steps" title="Đăng kí ngay"></a>
 
-        <!-- Lớp vá sạch lỗi chữ chồng đè ở thẻ Voucher Trà Atisô đầu tiên -->
-        <div class="voucher-fix-overlay" onclick="scrollToRegister()">
-            <div class="v-sub">VOUCHER<br>TRÀ ATISÔ</div>
-            <div class="v-store">CỬA HÀNG VINAMILK</div>
-            <div class="v-amount">50.000đ</div>
+            <!-- Lớp vá sạch lỗi chữ chồng đè ở thẻ Voucher Trà Atisô đầu tiên -->
+            <div class="voucher-fix-overlay" onclick="scrollToRegister()">
+                <div class="v-sub">VOUCHER<br>TRÀ ATISÔ</div>
+                <div class="v-store">CỬA HÀNG VINAMILK</div>
+                <div class="v-amount">50.000đ</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= NẰM NGAY DƯỚI ĐỔI ĐIỂM NHẬN QUÀ ================= -->
+    <!-- 1. GIỚI THIỆU BẠN MỚI (500.000 ĐIỂM) -->
+    <section class="referral-banner-section" id="referral-section">
+        <div class="tet-corner-deco deco-top-left">🌼🌿</div>
+        <div class="tet-corner-deco deco-top-right"><span>🌼</span><span>🏮</span></div>
+        <div class="tet-corner-deco deco-mid-left">🧧</div>
+        <div class="tet-corner-deco deco-mid-right">🧧</div>
+
+        <div class="coin-deco coin-1"></div>
+        <div class="coin-deco coin-2"></div>
+        <div class="coin-deco coin-3"></div>
+        <div class="coin-deco coin-4"></div>
+
+        <div class="referral-content">
+            <h2 class="referral-title">Giới thiệu Bạn Mới</h2>
+            <p class="referral-subtitle">Nhận tới 500.000 điểm giới thiệu bạn mới</p>
+            <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="referral-btn">Đăng ký ngay</a>
+            <div class="referral-login-note">
+                Bạn đã có tài khoản? <a href="#form-dang-ky" onclick="scrollToRegister(); return false;">Đăng nhập</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. CHIA SẺ & NHẬN THƯỞNG (4 MỐC ĐIỂM) -->
+    <section class="share-reward-section" id="share-reward-section">
+        <h2 class="share-reward-title">Chia sẻ &amp; Nhận thưởng 🧧</h2>
+
+        <div class="share-reward-grid">
+            <div class="share-card">
+                <div>
+                    <h3 class="share-card-heading">Nhận ngay 30.000 Điểm thưởng</h3>
+                    <p class="share-card-desc">Mỗi khi giới thiệu 01 Bạn mới có đơn hàng thành công</p>
+                </div>
+                <div class="cloud-badge">
+                    <div class="cloud-badge-inner">
+                        <div class="mini-coin-icon"></div>
+                        <div class="cloud-points">+30.000<br>Điểm</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="share-card">
+                <div>
+                    <h3 class="share-card-heading">Nhận thêm 30.000 Điểm thưởng</h3>
+                    <p class="share-card-desc">Khi giới thiệu 03 Bạn mới có đơn hàng thành công</p>
+                </div>
+                <div class="cloud-badge">
+                    <div class="cloud-badge-inner">
+                        <div class="mini-coin-icon"></div>
+                        <div class="cloud-points">+30.000<br>Điểm</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="share-card">
+                <div>
+                    <h3 class="share-card-heading">Nhận thêm 100.000 Điểm thưởng</h3>
+                    <p class="share-card-desc">Khi giới thiệu 10 Bạn mới có đơn hàng thành công</p>
+                </div>
+                <div class="cloud-badge">
+                    <div class="cloud-badge-inner">
+                        <div class="mini-coin-icon"></div>
+                        <div class="cloud-points">+100.000<br>Điểm</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="share-card">
+                <div>
+                    <h3 class="share-card-heading">Nhận thêm 200.000 Điểm thưởng</h3>
+                    <p class="share-card-desc">Khi giới thiệu 20 Bạn mới có đơn hàng thành công</p>
+                </div>
+                <div class="cloud-badge">
+                    <div class="cloud-badge-inner">
+                        <div class="mini-coin-icon"></div>
+                        <div class="cloud-points">+200.000<br>Điểm</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Form đăng ký thật đồng bộ Zoho CRM (Webform Lading) -->
+        <div class="share-cta-bar">
+            <div class="share-cta-text">
+                <i class="fa-solid fa-gift"></i>
+                <span>Tham gia ngay chương trình giới thiệu bạn mới để nhận hàng ngàn quà tặng hấp dẫn</span>
+            </div>
+            <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="share-login-btn">Đăng nhập</a>
+        </div>
+    </section>
+
+    <!-- 3. BẠN MỚI CŨNG CÓ QUÀ -->
+    <section class="new-friend-gift-section" id="new-friend-gift">
+        <div class="new-friend-container">
+            <div>
+                <h2 class="nf-title">Bạn Mới cũng có quà</h2>
+
+                <div class="nf-highlight-row">
+                    <span class="nf-highlight-label">Đăng ký thành công với mã giới thiệu</span>
+                    <span class="nf-green-pill">Nhận ngay 01 Voucher giảm 12%</span>
+                </div>
+
+                <div class="nf-highlight-row">
+                    <span class="nf-highlight-label">Hoàn tất đơn hàng đầu tiên</span>
+                    <span class="nf-green-pill">Nhận thêm 02 Voucher giảm tới 15%</span>
+                </div>
+
+                <div class="nf-rules-box">
+                    <ul>
+                        <li>Bạn Mới là Khách Hàng chưa đăng ký tài khoản tại hệ thống.</li>
+                        <li>Đơn hàng ĐẦU TIÊN có giá trị tối thiểu 400.000đ &amp; không bao gồm các sản phẩm cho trẻ em dưới 2 tuổi.</li>
+                        <li>Voucher 12% cho đơn hàng từ 400.000đ, giảm tối đa 120.000đ.</li>
+                        <li>Voucher 13% cho đơn hàng từ 500.000đ, giảm tối đa 150.000đ.</li>
+                        <li>Voucher 15% cho đơn hàng từ 1.000.000đ, giảm tối đa 300.000đ.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nf-visual-card">
+                <span class="nf-float-tag tag-pink">ƯU ĐÃI ĐỘC QUYỀN</span>
+                <span class="nf-float-tag tag-orange">VOUCHER</span>
+                <span class="nf-float-tag tag-green">QUÀ TẶNG</span>
+                <div class="nf-phone-mockup">
+                    <div style="font-size: 32px;">📣</div>
+                    <div class="nf-phone-bag">Vinamilk</div>
+                    <div style="color: #002395; font-size: 11px; font-weight: 800;">TẾT KHOẺ RE</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KHU VỰC FORM ĐĂNG KÝ THÀNH VIÊN (ĐỒNG BỘ ZOHO CRM) -->
+    <section class="register-section-wrapper">
+        <h2 class="register-section-heading">ĐĂNG KÝ THÀNH VIÊN VINAMILK</h2>
+        <p class="register-section-sub">Điền đầy đủ thông tin bên dưới để nhận ngay mã lì xì &amp; bộ voucher Tết Khoẻ Re</p>
+
         <form id="form-dang-ky" class="overlay-form-container">
             <div id="lixiFormBanner" class="lixi-form-banner"></div>
             <input type="text" class="real-input" id="tenDangNhap" placeholder="Tên đăng nhập *" required>
@@ -1411,94 +1720,6 @@
 
             <button type="submit" id="btnSubmitRegister" class="submit-real-btn">Đăng ký nhận ưu đãi ngay</button>
         </form>
-    </div>
-
-    <!-- BANNER 1: GIỚI THIỆU BẠN MỚI (500.000 ĐIỂM) -->
-    <section class="referral-banner-section" id="referral-section">
-        <div class="coin-deco coin-1"></div>
-        <div class="coin-deco coin-2"></div>
-        <div class="coin-deco coin-3"></div>
-        <div class="coin-deco coin-4"></div>
-
-        <div class="referral-content">
-            <h2 class="referral-title">Giới thiệu Bạn Mới</h2>
-            <p class="referral-subtitle">Nhận tới 500.000 điểm giới thiệu bạn mới</p>
-            <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="referral-btn">Đăng ký ngay</a>
-            <div class="referral-login-note">
-                Bạn đã có tài khoản? <a href="#form-dang-ky" onclick="scrollToRegister(); return false;">Đăng nhập</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- BANNER 2: CHIA SẺ & NHẬN THƯỞNG (4 MỐC ĐIỂM) -->
-    <section class="share-reward-section" id="share-reward-section">
-        <h2 class="share-reward-title">Chia sẻ &amp; Nhận thưởng</h2>
-
-        <div class="share-reward-grid">
-            <!-- Mốc 1 -->
-            <div class="share-card">
-                <div>
-                    <h3 class="share-card-heading">Nhận ngay 30.000 Điểm thưởng</h3>
-                    <p class="share-card-desc">Mỗi khi giới thiệu 01 Bạn mới có đơn hàng thành công</p>
-                </div>
-                <div class="cloud-badge">
-                    <div class="cloud-badge-inner">
-                        <div class="mini-coin-icon"></div>
-                        <div class="cloud-points">+30.000<br>Điểm</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mốc 2 -->
-            <div class="share-card">
-                <div>
-                    <h3 class="share-card-heading">Nhận thêm 30.000 Điểm thưởng</h3>
-                    <p class="share-card-desc">Khi giới thiệu 03 Bạn mới có đơn hàng thành công</p>
-                </div>
-                <div class="cloud-badge">
-                    <div class="cloud-badge-inner">
-                        <div class="mini-coin-icon"></div>
-                        <div class="cloud-points">+30.000<br>Điểm</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mốc 3 -->
-            <div class="share-card">
-                <div>
-                    <h3 class="share-card-heading">Nhận thêm 100.000 Điểm thưởng</h3>
-                    <p class="share-card-desc">Khi giới thiệu 10 Bạn mới có đơn hàng thành công</p>
-                </div>
-                <div class="cloud-badge">
-                    <div class="cloud-badge-inner">
-                        <div class="mini-coin-icon"></div>
-                        <div class="cloud-points">+100.000<br>Điểm</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mốc 4 -->
-            <div class="share-card">
-                <div>
-                    <h3 class="share-card-heading">Nhận thêm 200.000 Điểm thưởng</h3>
-                    <p class="share-card-desc">Khi giới thiệu 20 Bạn mới có đơn hàng thành công</p>
-                </div>
-                <div class="cloud-badge">
-                    <div class="cloud-badge-inner">
-                        <div class="mini-coin-icon"></div>
-                        <div class="cloud-points">+200.000<br>Điểm</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="share-cta-bar">
-            <div class="share-cta-text">
-                <i class="fa-solid fa-gift"></i>
-                <span>Tham gia ngay chương trình giới thiệu bạn mới để nhận hàng ngàn quà tặng hấp dẫn</span>
-            </div>
-            <a href="#form-dang-ky" onclick="scrollToRegister(); return false;" class="share-login-btn">Đăng nhập</a>
-        </div>
     </section>
 
     <!-- PHẦN ĐÁNH GIÁ TỪ KHÁCH HÀNG -->
@@ -1705,7 +1926,7 @@
             });
         }, { threshold: 0.12 });
 
-        document.querySelectorAll('.scroll-zone, .overlay-form-container, .review-card').forEach(el => {
+        document.querySelectorAll('.scroll-zone, .review-card').forEach(el => {
             revealObserver.observe(el);
         });
 
